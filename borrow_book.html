@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Borrow Book - Khadija's Library</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function borrowBook(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      fetch('borrow_book.php', {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+      })
+      .then(res => res.text())
+      .then(msg => {
+        alert(msg);
+        window.location.href = 'dashboard.php';
+      })
+      .catch(() => {
+        alert("Something went wrong while borrowing the book.");
+      });
+    }
+  </script>
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h2>Borrow Book</h2>
+    <form onsubmit="borrowBook(event)">
+      <input type="number" name="member_id" placeholder="Your Member ID" required>
+      <input type="number" name="book_id" placeholder="Book ID to Borrow" required>
+      <button type="submit">Borrow</button>
+    </form>
+  </div>
+</body>
+</html>

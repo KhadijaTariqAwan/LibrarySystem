@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Book - Khadija's Library</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function addBook(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      fetch('add_book.php', {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+      })
+      .then(res => res.text())
+      .then(msg => {
+        alert(msg);
+        window.location.href = 'dashboard.php';  // Redirect after alert
+      })
+      .catch(() => {
+        alert("Something went wrong while adding the book.");
+      });
+    }
+  </script>
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h2>Add a New Book</h2>
+    <form onsubmit="addBook(event)">
+      <input type="text" name="title" placeholder="Book Title" required>
+      <input type="text" name="author" placeholder="Author" required>
+      <input type="text" name="category" placeholder="Category" required>
+      <input type="text" name="isbn" placeholder="ISBN" required>
+      <input type="number" name="quantity" placeholder="Quantity" min="1" required>
+      <button type="submit">Add Book</button>
+    </form>
+  </div>
+</body>
+</html>
