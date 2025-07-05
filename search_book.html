@@ -4,14 +4,73 @@
   <meta charset="UTF-8">
   <title>Search Books - Khadija's Library</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('uploads/dashboard-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .search-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
 </head>
-<body class="login-body">
-  <div class="login-container">
+<body>
+
+  <div class="search-container">
     <h2>Search Books</h2>
-    <form action="dashboard.php" method="GET">
-      <input type="text" name="search" placeholder="Search by title, author, or category" required>
+    <form action="search_book.php" method="GET">
+      <input type="text" name="query" placeholder="Enter search term" required>
+      <select name="field">
+        <option value="all">All Fields</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="category">Category</option>
+      </select>
       <button type="submit">Search</button>
     </form>
   </div>
+
 </body>
 </html>

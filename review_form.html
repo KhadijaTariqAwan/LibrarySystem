@@ -2,26 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Add a New Book</title>
+  <title>Write a Review</title>
   <link rel="stylesheet" href="style.css">
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background: url('uploads/dashboard-bg.jpg') no-repeat center center fixed;
+      background-image: url('uploads/dashboard-bg.jpg'); /* ✅ Actual image path and name */
       background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
-    .form-container {
+    .review-container {
       background-color: rgba(0, 0, 0, 0.7);
-      max-width: 450px;
-      width: 90%;
+      width: 500px;
       margin: 100px auto;
       padding: 30px;
       border-radius: 10px;
       color: white;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
     h2 {
@@ -29,13 +30,19 @@
       margin-bottom: 20px;
     }
 
-    input[type="text"] {
+    input[type="text"],
+    textarea {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
       border: none;
       border-radius: 5px;
       font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 120px;
     }
 
     button {
@@ -57,15 +64,13 @@
 </head>
 <body>
 
-  <div class="form-container">
-    <h2>Add a New Book</h2>
-    <form action="add_book.php" method="POST">
+  <div class="review-container">
+    <h2>Write a Review</h2>
+    <form action="save_review.php" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
       <input type="text" name="title" placeholder="Book Title" required>
-      <input type="text" name="author" placeholder="Author" required>
-      <input type="text" name="category" placeholder="Category" required>
-      <input type="text" name="isbn" placeholder="ISBN" required>
-      <input type="text" name="quantity" placeholder="Quantity" required>
-      <button type="submit">Add Book</button>
+      <textarea name="review" placeholder="Write your review..." required></textarea>
+      <button type="submit">Submit Review</button>
     </form>
   </div>
 

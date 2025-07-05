@@ -28,46 +28,102 @@ if ($search) {
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: Arial;
-      background: #f8f8f8;
-      padding: 20px;
-    }
-    header {
-      background: #2c3e50;
+      background: url('uploads/dashboard-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      font-family: Arial, sans-serif;
       color: white;
-      padding: 10px 20px;
-      margin-bottom: 20px;
     }
+
+    header {
+      background: rgba(44, 62, 80, 0.95);
+      padding: 15px 30px;
+    }
+
     nav a {
-      margin-right: 20px;
       color: white;
       text-decoration: none;
+      margin-right: 25px;
+      font-weight: bold;
+      font-size: 16px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
+
+    h2 {
+      margin-left: 40px;
+      margin-top: 30px;
+      font-size: 28px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
     }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #e0e0e0;
-    }
+
     .back-link {
-      margin-bottom: 15px;
+      margin-left: 40px;
+      margin-bottom: 10px;
       display: inline-block;
+      font-weight: bold;
+    }
+
+    table {
+      width: 95%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    th {
+      background-color: rgba(255, 255, 255, 0.1);
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    a.back-link {
+      color: white;
+      font-size: 16px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
+    /* ✅ Success Popup */
+    .success-popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #2ecc71;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      font-size: 16px;
+      z-index: 9999;
+      animation: fadeOut 5s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; display: none; }
     }
   </style>
 </head>
-<body class="dashboard-page">
+<body>
 
 <header>
   <nav>
     <a href="add_book.html">Add Books</a>
     <a href="dashboard.php">Show Books</a>
     <a href="borrow_book.html">Borrow Books</a>
+    <a href="return_book.html">Return Book</a>
     <a href="search_book.html">Search Books</a>
     <a href="delete_book_list.php">Delete Book</a>
     <a href="logout.php">Logout</a>
@@ -77,7 +133,7 @@ if ($search) {
 <h2>All Books</h2>
 
 <?php if ($search): ?>
-  <p class="back-link"><a href="dashboard.php">🔙 Back to All Books</a></p>
+  <p class="back-link"><a class="back-link" href="dashboard.php">🔙 Back to All Books</a></p>
 <?php endif; ?>
 
 <table>
@@ -106,6 +162,10 @@ if ($search) {
     <?php endwhile; ?>
   </tbody>
 </table>
+
+<?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+  <div class="success-popup">✅ New book added successfully!</div>
+<?php endif; ?>
 
 </body>
 </html>

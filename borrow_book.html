@@ -2,38 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Borrow Book - Khadija's Library</title>
+  <title>Borrow a Book</title>
   <link rel="stylesheet" href="style.css">
-  <script>
-    function borrowBook(event) {
-      event.preventDefault();
-
-      const form = event.target;
-      const formData = new FormData(form);
-
-      fetch('borrow_book.php', {
-        method: 'POST',
-        body: new URLSearchParams(formData)
-      })
-      .then(res => res.text())
-      .then(msg => {
-        alert(msg);
-        window.location.href = 'dashboard.php';
-      })
-      .catch(() => {
-        alert("Something went wrong while borrowing the book.");
-      });
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('uploads/dashboard-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
-  </script>
+
+    .borrow-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 500px;
+      margin: 100px auto;
+      padding: 30px;
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
 </head>
-<body class="login-body">
-  <div class="login-container">
+<body>
+
+  <div class="borrow-container">
     <h2>Borrow Book</h2>
-    <form onsubmit="borrowBook(event)">
-      <input type="number" name="member_id" placeholder="Your Member ID" required>
+    <form action="borrow_book.php" method="POST">
+      <input type="text" name="member_id" placeholder="Your Member ID" required>
       <input type="number" name="book_id" placeholder="Book ID to Borrow" required>
       <button type="submit">Borrow</button>
     </form>
   </div>
+
 </body>
 </html>
