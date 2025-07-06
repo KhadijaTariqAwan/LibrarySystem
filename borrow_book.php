@@ -4,7 +4,7 @@ include 'db.php';
 $member_id = $_POST['member_id'];
 $book_id = $_POST['book_id'];
 
-// Check if book exists
+// Checking if the book exists
 $check = $conn->prepare("SELECT quantity FROM books WHERE id = ?");
 $check->bind_param("i", $book_id);
 $check->execute();
