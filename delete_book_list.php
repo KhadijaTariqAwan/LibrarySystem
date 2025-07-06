@@ -23,7 +23,7 @@ $result = $conn->query("SELECT * FROM books");
       background: url('uploads/dashboard-bg.jpg') no-repeat center center fixed;
       background-size: cover;
     }
-
+    
     header {
       background: #2c3e50;
       padding: 15px;
